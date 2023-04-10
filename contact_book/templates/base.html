@@ -29,7 +29,7 @@
             color: #fff;
             width: 250px;
             padding-left: 20px;
-            height: 100vh;
+            height: flex;
             background-image: linear-gradient(30deg , #0048bd, #44a7fd);
             border-top-right-radius: 80px;
           }
@@ -120,7 +120,7 @@
           <i class="fa fa-user-o" aria-hidden="true"></i>
             HOME
         </a>
-        {% if user.isauthenticated %}
+        {% if user.is_authenticated %}
         <a href="home.html">
             <i class="fa fa-clone" aria-hidden="true"></i>
             PROFILE
@@ -133,7 +133,7 @@
             <i class="fa fa-star-o" aria-hidden="true"></i>
             ADD CONTACT
         </a>
-        <a href="javascript:void(0)">
+        <a href="{% url 'logout' %}">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
             LOGOUT
         </a>

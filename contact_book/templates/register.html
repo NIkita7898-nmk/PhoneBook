@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block main_content %}
 <html>
     <head>
         <style>
@@ -9,7 +11,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto';
 }
 
 body {
@@ -18,6 +20,7 @@ body {
 
 .wrapper {
     max-width: 500px;
+    width: 500px;
     min-height: 500px;
     margin: 40px auto;
     padding: 40px 30px 30px 30px;
@@ -110,6 +113,7 @@ body {
         <title>Registration
         </title>
         <body>
+
 <div class="wrapper">
     <div class="logo">
         <img src="https://cdn-icons-png.flaticon.com/512/8744/8744048.png" alt="logo">
@@ -149,12 +153,23 @@ body {
             <span class="far fa-user"></span>
             {{user_form.Address}}
         </div>
-       
+      
       <button class="btn btn-primary" type="submit">Submit</button>
     </form>
     <div class="text-center fs-6">
         <a href="{% url 'login'%}">Login</a>
     </div>
+    <div>
+        {% csrf_token %}
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %} 
+            <div class="alert alert-primary" role="alert"> {{ message }}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        </div>
 </div>
 </body>
 </html>
+{% endblock main_content %}

@@ -1,5 +1,50 @@
 {% extends 'base.html' %}
 {% block main_content %}
-hello................................................................................................................
+<div>
+    {% csrf_token %}
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %} 
+        <div class="alert alert-primary" role="alert"> {{ message }}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    </div>
+hello.........................
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% comment %} ....................................................................................... {% endcomment %}
+
 {% endblock main_content %}
 

@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block main_content %}
 <html>
     <head>
         <style>
@@ -9,10 +11,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: ''Roboto';
 }
 
 body {
+    
     background: #ecf0f3;
 }
 
@@ -121,7 +124,7 @@ body {
         {% csrf_token %}
         <div class="form-field d-flex align-items-center">
             <span class="far fa-user"></span>
-            <input type="text" name="username" id="username" placeholder="email">
+            <input type="text" name="email" id="email" placeholder="email">
         </div>
         <div class="form-field d-flex align-items-center">
             <span class="fas fa-key"></span>
@@ -136,3 +139,4 @@ body {
 </div>
 </body>
 </html>
+{% endblock main_content %}
