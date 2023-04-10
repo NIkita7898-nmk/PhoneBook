@@ -70,3 +70,9 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('login') 
+
+class Profile(View):
+    def get(self, request):
+        user = User.objects.get(email = request.user)
+        context = {"user" : user}
+        return render(request, 'profile.html', context)

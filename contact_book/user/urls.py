@@ -1,10 +1,12 @@
 from django.contrib import admin
 from django.urls import path
-from user.views import Home, Register, login_view, logout_view
+# from user.views import Home, Register, login_view, logout_view, p
+from user import views as vs
 urlpatterns = [
     # path("admin/", admin.site.urls),
-    path("", Home.as_view(), name="home"),
-    path("register/", Register.as_view(),name="register"),
-    path("login/", login_view, name="login"),
-    path('logout/', logout_view, name="logout"),
+    path("", vs.Home.as_view(), name="home"),
+    path("register/", vs.Register.as_view(),name="register"),
+    path("profile/", vs.Profile.as_view(),name="profile"),
+    path("login/", vs.login_view, name="login"),
+    path('logout/', vs.logout_view, name="logout"),
 ]

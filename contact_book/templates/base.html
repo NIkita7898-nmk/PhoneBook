@@ -121,7 +121,7 @@
             HOME
         </a>
         {% if user.is_authenticated %}
-        <a href="home.html">
+        <a href="{% url 'profile' %}">
             <i class="fa fa-clone" aria-hidden="true"></i>
             PROFILE
         </a>
