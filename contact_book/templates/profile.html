@@ -19,11 +19,13 @@
     }
 
 .wrapper .form-field {
+    background-color:  #d9e7fa;
     padding-left: 10px;
     margin-bottom: 20px;
-    border-radius: 20px;
+    border-radius: 8px;
     width:50px;
-    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+    height:25px;
+    box-shadow:  10px 10px 10px #cbced1;
 }
        
 </style>
@@ -31,23 +33,38 @@
     Name--------------------------------------------------------------------------------
     <div class="form-field" style="width:100%;">
         {{user.fname}} {{user.lname}}
-    </div> <br>
-
+    </div>
+    Mobile number
     <div class="form-field" style="width:100%;">
-        Mobile number  {{user.mobile}}
+          {{user.mobile}}
     </div>
     Address
     <div class="form-field" style="width:100%;">
     </div>
 </div>
 <div class="image-upload">
-  
+    {% comment %} <form class="p-3 mt-3" action="/login/" method=POST>
+        {% csrf_token %}
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="file" name="images" id="images" placeholder="images">
+        </div>
+        <button type=submit value=submit>submit</button>
+
+    </form> {% endcomment %}
+
+
+  <form class="row g-1" method = POST  enctype = "multipart/form-data">
+        {% csrf_token %}
     <label for="file-input" style="float:right; margin-top:15px;">
       <img src="https://cdn-icons-png.flaticon.com/512/3237/3237447.png" style="float:right; height:100px; width:100px;" />
     </label>
-    <input id="file-input" type="file" />
 
-  </div>
+    <input id="file-input" type="file"/>
+    {% comment %} <button type=submit value=submit>submit</button> {% endcomment %}
+</form>
+</div> 
+</div>
 {% comment %} <div style = "width:100%;">
     profile page
         <div class="logo" style="float:right; margin-top:25px; margin-top:25px width: 80px;">

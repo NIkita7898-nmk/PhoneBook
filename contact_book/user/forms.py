@@ -1,5 +1,5 @@
 from django import forms
-from user.models import User, Contact, Mobile
+from user.models import User, Contact, Mobile, Profile
 from django.contrib.auth import get_user_model
 # User = get_user_model()
 from django.core.exceptions import ValidationError
@@ -30,3 +30,7 @@ class ContactForm(forms.Form):
     mobile= forms.IntegerField(
                      help_text = "Enter mobile number"
                      )
+class ProfileForm(forms.Form):
+    class Meta:
+        model = Profile
+        fields =('image')

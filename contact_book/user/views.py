@@ -6,9 +6,9 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 
 from django.contrib.auth.hashers import make_password, check_password
-from .models import User
+from .models import User, Profile
 
-from .forms import RegistrationForm, ContactForm
+from .forms import RegistrationForm, ContactForm, ProfileForm
 # Create your views here.
 class Home(View):
 
@@ -71,8 +71,30 @@ def logout_view(request):
     logout(request)
     return redirect('login') 
 
-class Profile(View):
+class ProfileView(View):
     def get(self, request):
+
+        form = ProfileForm
+        print(form)
+        user = User.objects.get(email = request.user)
+        if Profile.objects.filter(user=user):
+            image = Profile.objects.filter(user=user)
+        else:
+            image = "None"
+        context = {"user" : user, "image":image}
+        return render(request, 'profile.html', context)
+    
+    def post(self, request):
+
+        form = ProfileForm(self.request.POST,  self.request.FILES) 
         user = User.objects.get(email = request.user)
         context = {"user" : user}
+        if form.is_valid():
+            file = request.FILES.getlist("images")
+            print(file)
+            print("*************************")
+            print(form)
+            print("*************************")
+            # Profile.objects.create(user=user.id, image)
+            # form.save()
         return render(request, 'profile.html', context)

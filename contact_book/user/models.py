@@ -63,3 +63,7 @@ class Contact(models.Model):
 class Mobile(models.Model):
     contact = models.ForeignKey(Contact,on_delete=models.CASCADE)
     mobile = models.IntegerField()
+
+class Profile(models.Model):
+    user =  models.ForeignKey(User,on_delete=models.CASCADE)
+    image = models.FileField(upload_to="media", null=True, blank=True)
