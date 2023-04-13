@@ -75,26 +75,31 @@ class ProfileView(View):
     def get(self, request):
 
         form = ProfileForm
-        print(form)
         user = User.objects.get(email = request.user)
         if Profile.objects.filter(user=user):
             image = Profile.objects.filter(user=user)
         else:
             image = "None"
-        context = {"user" : user, "image":image}
+        context = {"user" : user, "image":image, "form":form }
         return render(request, 'profile.html', context)
     
     def post(self, request):
 
-        form = ProfileForm(self.request.POST,  self.request.FILES) 
+        form = ProfileForm(request.POST,  request.FILES) 
         user = User.objects.get(email = request.user)
-        context = {"user" : user}
+        context = {"user" : user,
+                   "form" : form}
+        
         if form.is_valid():
-            file = request.FILES.getlist("images")
-            print(file)
-            print("*************************")
             print(form)
-            print("*************************")
+            # print("*************")
+            # file = request.FILES.getlist('image')
+            # print(file)
+            form.save()
+            # form.save(commit=False)
+            # Profile.User = self.request.user
+            # Profile.objects.create(user =self.request.user, image = file)
+            
             # Profile.objects.create(user=user.id, image)
             # form.save()
         return render(request, 'profile.html', context)

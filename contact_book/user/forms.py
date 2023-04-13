@@ -23,14 +23,14 @@ class RegistrationForm(forms.ModelForm):
             user.save()
         return user
     
-
-class ContactForm(forms.Form):
+class ContactForm(forms.ModelForm):
     fname = forms.CharField(max_length = 30)
     lname = forms.CharField(max_length = 30)
     mobile= forms.IntegerField(
                      help_text = "Enter mobile number"
                      )
-class ProfileForm(forms.Form):
+    
+class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields =('image')
+        fields ='__all__'
