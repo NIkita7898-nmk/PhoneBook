@@ -42,24 +42,32 @@
     <div class="form-field" style="width:100%;">
           {{user.email}}
     </div>
-    Address
-
-    ------{{image}}r325
+    Address  
     <div class="form-field" style="width:100%;">
+        {{user.Address}}{{user.id}}
     </div>
     Add Image
-    <form class="p-3 mt-3" method=POST> 
+    <form class="form-field" style="width:100%;" enctype="multipart/form-data" method=POST> 
         {% csrf_token %}
-        {{form.as_p}}
+      
+            <label for="id_image" class="form-label"></label>
+              <input type="file" id="image" name="image">
+              {% comment %} <label for="id_user" class="form-label">User</label> {% endcomment %}
+              <input type = 'hidden' name="user" value = '{{user.id}}' >
         <button type=submit value=submit>Submit</button>
     </form>
 </div>
+<img src='media/{{image.image}}'style="height:100px; width:100px;"/> 
 <div class="image-upload">
         <div class="form-field d-flex align-items-center">
+            
+            {% comment %} {% if image %}
             <span class="far fa-user"></span>
             <img src="https://cdn-icons-png.flaticon.com/512/3237/3237447.png" style="height:100px; width:100px;" />
+            {% else %} {% endcomment %}
+            {% comment %} {% endif %} {% endcomment %}
         </div>
-        <input type=submit  class="m-5 btn btn-outline-primary btn-sm float-center me-3 " aria-hidden="true" value="Upload Image">
+        {% comment %} <input type=submit  class="m-5 btn btn-outline-primary btn-sm float-center me-3 " aria-hidden="true" value="Upload Image"> {% endcomment %}
 </div> 
 <br>
 <br>

@@ -31,6 +31,11 @@ class ContactForm(forms.ModelForm):
                      )
     
 class ProfileForm(forms.ModelForm):
+    # image = forms.FileField(
+    #     label="image",
+    #     widget=forms.ClearableFileInput(attrs={"multiple": True}),
+    # )
+
     class Meta:
         model = Profile
-        fields ='__all__'
+        fields =["user","image"]
