@@ -114,6 +114,13 @@ body {
         </title>
         <body>
 <div class="wrapper">
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %} 
+        <div class="alert alert-primary" role="alert"> {{ message }}</div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
     <div class="logo">
         <img src="https://cdn-icons-png.flaticon.com/512/8744/8744048.png" alt="logo">
     </div>

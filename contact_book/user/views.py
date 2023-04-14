@@ -74,31 +74,31 @@ def logout_view(request):
 class ProfileView(View):
     form_class = ProfileForm
     template_name = 'profile.html'
+    success_url='/profile/'
+
 
     def get(self, request):
-
-        form = ProfileForm
         user = User.objects.get(email = request.user)
         if Profile.objects.filter(user=user):
             image = Profile.objects.get(user=user)
         else:
             image = "None"
-        print("Imageeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
-        print(image)
-        context = {"user" : user, "image":image, "form":form }
+        context = {"user" : user, "image":image}
         return render(request, 'profile.html', context)
     
     def post(self, request):
-
         form = ProfileForm(request.POST,  request.FILES) 
         user = User.objects.get(email = request.user)
         context = {"user" : user,
                    "form" : form}
-        if Profile.objects.filter(user=user):
-            profile_obj = Profile.objects.get(user=user)
-            profile_obj.delete()
-        else:
-            if form.is_valid():
+        if form.is_valid():
+            if Profile.objects.filter(user=user):
+                profile_obj = Profile.objects.get(user=user)
+                profile_obj.delete()
+                form.save()
+                message = messages.info(request, "Image uploaded successfully, please refresh your page")
+            else:
                 file = request.FILES.get("image")
                 form.save()
+                message = messages.info(request, "Image uploaded successfully, please refresh your page")
         return render(request, 'profile.html', context)

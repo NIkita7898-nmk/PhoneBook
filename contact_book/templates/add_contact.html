@@ -27,29 +27,6 @@
     height:25px;
     box-shadow:  10px 10px 10px #cbced1;
 }
-.wrapper .form-id {
-    background-color:  #d9e7fa;
-    padding-left: 10px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    width:50px;
-    height:38px;
-    box-shadow:  10px 10px 10px #cbced1;
-}
-
-.wrapper .form-id .btn {
-    box-shadow: none;
-    width: 80px;
-    height: 40px;
-    margin-right: 5px;
-    float:right;
-    background-color: #03A9F4;
-    color: #fff;
-    border-radius: 15px;
-    box-shadow: 3px 3px 3px #b1b1b1,
-        -3px -3px 3px #fff;
-    letter-spacing: 1.3px;
-}
 .helo{
     align-items: center;
     margin-top:20px;
@@ -75,34 +52,27 @@
         {{user.Address}}{{user.id}}
     </div>
     Add/Change Image
-    <form class="form-id" style="width:100%;" enctype="multipart/form-data" method=POST> 
+    <form class="form-field" style="width:100%;" enctype="multipart/form-data" method=POST> 
         {% csrf_token %}
       
             <label for="id_image" class="form-label"></label>
               <input type="file" id="image" name="image">
               {% comment %} <label for="id_user" class="form-label">User</label> {% endcomment %}
               <input type = 'hidden' name="user" value = '{{user.id}}' >
-                <button class="btn" type=submit value=submit>Submit</button>
+              <div class="helo" style="margin-top:10px; align-items:center;" >
+        <button type=submit value=submit>Submit</button>
+              </div>
     </form>
-    {% if messages %}
-    {% for message in messages %}
-    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %} 
-        <div class="alert alert-primary" role="alert"> {{ message }}</div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
 </div>
-
+<img src='/media/{{image.image}}'style="height:100px; width:100px;"/> 
 <div class="image-upload">
         <div class="form-field d-flex align-items-center">
-        
-            {% if image %}
+            
+            {% comment %} {% if image %}
             <span class="far fa-user"></span>
-            <img src='/media/{{image.image}}'style="height:100px; width:100px;"/> 
-            {% else %} 
             <img src="https://cdn-icons-png.flaticon.com/512/3237/3237447.png" style="height:100px; width:100px;" />
-            {% endif %}
-
+            {% else %} {% endcomment %}
+            {% comment %} {% endif %} {% endcomment %}
         </div>
         {% comment %} <input type=submit  class="m-5 btn btn-outline-primary btn-sm float-center me-3 " aria-hidden="true" value="Upload Image"> {% endcomment %}
 </div> 

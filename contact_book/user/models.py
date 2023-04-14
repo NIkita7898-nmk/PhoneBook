@@ -66,4 +66,4 @@ class Mobile(models.Model):
 
 class Profile(models.Model):
     user =  models.ForeignKey(User,on_delete=models.CASCADE)
-    image = models.FileField(upload_to="Image/", null=True, blank=True)
+    image = models.FileField(upload_to="ProfileImg/", null=True, blank=True)
