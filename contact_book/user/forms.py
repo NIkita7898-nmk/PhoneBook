@@ -29,7 +29,15 @@ class ContactForm(forms.ModelForm):
     mobile= forms.IntegerField(
                      help_text = "Enter mobile number"
                      )
-    
+    class Meta:
+        model = Contact
+        fields = '__all__'
+
+class MobileForm(forms.ModelForm):
+    class Meta:
+        model = Mobile
+        fields='__all__'
+        
 class ProfileForm(forms.ModelForm):
     # image = forms.FileField(
     #     label="image",

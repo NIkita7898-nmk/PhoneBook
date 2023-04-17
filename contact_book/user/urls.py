@@ -11,6 +11,10 @@ urlpatterns = [
     path("profile/", vs.ProfileView.as_view(),name="profile"),
     path("login/", vs.login_view, name="login"),
     path('logout/', vs.logout_view, name="logout"),
+    path('add-contact/', vs.AddContact.as_view(), name="add-contact"),
+    path('view-contact/', vs.ViewContact.as_view(), name="view-contact"),
+    path("delete-img/", vs.DeleteImage.as_view(), name="delete-img")
 ]
+
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

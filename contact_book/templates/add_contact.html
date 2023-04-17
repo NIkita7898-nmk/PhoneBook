@@ -1,80 +1,154 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {% block main_content %}
-<style>
-    .image-upload>input {
-        display: none;
-       
-        padding-left: 25px;
+<html>
+    <head>
+        <style>
+        /* Importing fonts from Google */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-      }
-      .wrapper {
-        max-width: 850px;
-        min-height: 500px;
-        margin: 40px auto;
-        margin-left:30px;
-        padding: 60px 60px 60px 60px;
-        background-color: #ecf0f3;
-        border-radius: 15px;
-        box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
-    }
+/* Reseting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+body {
+    background: #ecf0f3;
+}
+
+.wrapper {
+    max-width: 500px;
+    width: 500px;
+    min-height: 500px;
+    margin: 40px auto;
+    padding: 40px 30px 30px 30px;
+    background-color: #ecf0f3;
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+}
+
+.logo {
+    width: 80px;
+    margin: auto;
+}
+
+.logo img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f,
+        0px 0px 0px 5px #ecf0f3,
+        8px 8px 15px #a7aaa7,
+        -8px -8px 15px #fff;
+}
+
+.wrapper .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: #555;
+}
+
+.wrapper .form-field input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+    /* border: 1px solid red; */
+}
 
 .wrapper .form-field {
-    background-color:  #d9e7fa;
     padding-left: 10px;
     margin-bottom: 20px;
-    border-radius: 8px;
-    width:50px;
-    height:25px;
-    box-shadow:  10px 10px 10px #cbced1;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
 }
-.helo{
-    align-items: center;
-    margin-top:20px;
-    text-align:center;
+
+.wrapper .form-field .fas {
+    color: #555;
 }
-       
+
+.wrapper .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: #03A9F4;
+    color: #fff;
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px #b1b1b1,
+        -3px -3px 3px #fff;
+    letter-spacing: 1.3px;
+}
+
+.wrapper .btn:hover {
+    background-color: #039BE5;
+}
+
+.wrapper a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #03A9F4;
+}
+
+.wrapper a:hover {
+    color: #039BE5;
+}
+
+@media(max-width: 380px) {
+    .wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px;
+    }
+}    
 </style>
-<div class="wrapper" style="width:80%;">
-    Name
-    <div class="form-field" style="width:100%;">
-        {{user.fname}} {{user.lname}}
+<div class="wrapper">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/8744/8744048.png" alt="logo">
     </div>
-    Mobile number
-    <div class="form-field" style="width:100%;">
-          {{user.mobile}}
+    <div class="text-center mt-4 name">
+        Add Contact
     </div>
-    Mobile number
-    <div class="form-field" style="width:100%;">
-          {{user.email}}
-    </div>
-    Address  
-    <div class="form-field" style="width:100%;">
-        {{user.Address}}{{user.id}}
-    </div>
-    Add/Change Image
-    <form class="form-field" style="width:100%;" enctype="multipart/form-data" method=POST> 
-        {% csrf_token %}
-      
-            <label for="id_image" class="form-label"></label>
-              <input type="file" id="image" name="image">
-              {% comment %} <label for="id_user" class="form-label">User</label> {% endcomment %}
-              <input type = 'hidden' name="user" value = '{{user.id}}' >
-              <div class="helo" style="margin-top:10px; align-items:center;" >
-        <button type=submit value=submit>Submit</button>
-              </div>
-    </form>
-</div>
-<img src='/media/{{image.image}}'style="height:100px; width:100px;"/> 
-<div class="image-upload">
+    <form class="p-3 mt-3", method=POST>
+      {% csrf_token %}
+      First Name
         <div class="form-field d-flex align-items-center">
-            
-            {% comment %} {% if image %}
             <span class="far fa-user"></span>
-            <img src="https://cdn-icons-png.flaticon.com/512/3237/3237447.png" style="height:100px; width:100px;" />
-            {% else %} {% endcomment %}
-            {% comment %} {% endif %} {% endcomment %}
+            {{contaxt.c_form.fname}}
         </div>
-        {% comment %} <input type=submit  class="m-5 btn btn-outline-primary btn-sm float-center me-3 " aria-hidden="true" value="Upload Image"> {% endcomment %}
+        Last Name
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            {{contaxt.c_form.lname}}
+        </div>
+        Mobile no.
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            {{contaxt.m_form.mobile}}
+        </div>
+      <button class="btn btn-primary" type="submit">Add Contact</button>
+    </form>
+    <div class="text-center fs-6">
+        <a href="{% url 'home'%}">Go Back</a>
+    </div>
+    <div>
+        {% csrf_token %}
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %} 
+            <div class="alert alert-primary" role="alert"> {{ message }}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        </div>
+</div>
 </div> 
 <br>
 <br>
